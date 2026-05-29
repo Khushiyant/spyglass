@@ -1,0 +1,22 @@
+name: reefline_linear
+version: 0.1.0
+dsl_version: 3
+backend: file
+test_queries:
+  - SELECT COUNT(*) FROM reefline_linear.issues
+tables:
+  - name: issues
+    description: Linear issues tracked by the Reefline engineering team (synthetic).
+    format: jsonl
+    source:
+      location: file:///Users/khushiyantchauhan/Developer/experiments/wemakedevs-hack/spyglass/coral/data/linear/
+      glob: "issues.jsonl"
+    columns:
+      - { name: id,            type: Utf8 }
+      - { name: title,         type: Utf8 }
+      - { name: state,         type: Utf8 }
+      - { name: assignee,      type: Utf8 }
+      - { name: priority,      type: Int64 }
+      - { name: labels,        type: Json }
+      - { name: created_at,    type: Utf8 }
+      - { name: completed_at,  type: Utf8 }

@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --paper: #fbfaf6;
+  --ink: #0a0a0a;
+  --ink-soft: #2a2a2a;
+  --ink-dim: #6b6b6b;
+  --ink-faint: #b8b6ae;
+  --rule: #0a0a0a;
+  --accent: #ff5a36;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-sketch: var(--font-caveat);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* faint dotted grid — engineer's notebook */
+body {
+  background-image:
+    radial-gradient(circle, #0a0a0a08 0.6px, transparent 0.6px);
+  background-size: 18px 18px;
+  background-position: -1px -1px;
+}
+
+.sketch { font-family: var(--font-caveat), "Caveat", "Patrick Hand", "Comic Sans MS", cursive; font-weight: 600; }
+
+.card {
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  position: relative;
+}
+.card-tilt-l { transform: rotate(-0.4deg); }
+.card-tilt-r { transform: rotate(0.4deg); }
+
+.btn {
+  border: 1.5px solid var(--ink);
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 7px 14px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
+  font-family: var(--font-geist-mono), monospace;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn:active { transform: translate(1px, 1px); }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 7px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-geist-mono), monospace;
+  background: var(--bg);
+  color: var(--ink);
+}
+.chip-error { background: var(--ink); color: var(--bg); }
+
+.mono { font-family: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace; }
+
+input, textarea {
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  border-radius: 2px;
+  font-family: var(--font-geist-mono), monospace;
+}
+input:focus, textarea:focus { outline: none; box-shadow: 2px 2px 0 0 var(--ink); }
+
+::placeholder { color: var(--ink-faint); }
+
+.underline-sketch {
+  position: relative;
+  display: inline-block;
+}
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -4px;
+  height: 6px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'><path d='M2 5 C 30 2, 60 7, 100 4 S 170 6, 198 3' stroke='%230a0a0a' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+}
+
+.rule-hand {
+  height: 8px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 8' preserveAspectRatio='none'><path d='M2 5 C 80 2, 160 7, 240 4 S 400 6, 480 3 S 580 5, 598 4' stroke='%230a0a0a' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+  width: 100%;
+}
+
+.kicker {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+}
+
+table.notebook {
+  width: 100%;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+table.notebook th {
+  text-align: left;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+table.notebook td {
+  padding: 5px 10px;
+  border-bottom: 1px dashed var(--ink-faint);
+  vertical-align: top;
+}
+
+@keyframes ink-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.3); }
+}
+.dot-pulse { animation: ink-pulse 1.6s ease-in-out infinite; transform-origin: center; }
+
+/* Source markers — black ink with shape glyph instead of color */
+.src-github  { /* circle */ }
+.src-sentry  { /* triangle */ }
+.src-linear  { /* square */ }
+.src-datadog { /* diamond */ }
+.src-stripe  { /* plus */ }

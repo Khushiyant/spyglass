@@ -1,0 +1,45 @@
+name: reefline_github
+version: 0.1.0
+dsl_version: 3
+backend: file
+test_queries:
+  - SELECT COUNT(*) FROM reefline_github.commits
+  - SELECT COUNT(*) FROM reefline_github.pulls
+tables:
+  - name: commits
+    description: Git commits to the Reefline monorepo (synthetic).
+    format: jsonl
+    source:
+      location: file:///Users/khushiyantchauhan/Developer/experiments/wemakedevs-hack/spyglass/coral/data/github/
+      glob: "commits.jsonl"
+    columns:
+      - { name: sha,           type: Utf8 }
+      - { name: author,        type: Utf8 }
+      - { name: author_email,  type: Utf8 }
+      - { name: message,       type: Utf8 }
+      - { name: files,         type: Json }
+      - { name: additions,     type: Int64 }
+      - { name: deletions,     type: Int64 }
+      - { name: committed_at,  type: Utf8 }
+      - { name: service,       type: Utf8 }
+      - { name: pr_number,     type: Int64 }
+      - { name: branch,        type: Utf8 }
+  - name: pulls
+    description: GitHub pull requests for the Reefline monorepo (synthetic).
+    format: jsonl
+    source:
+      location: file:///Users/khushiyantchauhan/Developer/experiments/wemakedevs-hack/spyglass/coral/data/github/
+      glob: "pulls.jsonl"
+    columns:
+      - { name: number,         type: Int64 }
+      - { name: title,          type: Utf8 }
+      - { name: author,         type: Utf8 }
+      - { name: author_email,   type: Utf8 }
+      - { name: state,          type: Utf8 }
+      - { name: created_at,     type: Utf8 }
+      - { name: merged_at,      type: Utf8 }
+      - { name: service,        type: Utf8 }
+      - { name: additions,      type: Int64 }
+      - { name: deletions,      type: Int64 }
+      - { name: files_changed,  type: Json }
+      - { name: url,            type: Utf8 }

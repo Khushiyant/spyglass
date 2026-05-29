@@ -1,0 +1,18 @@
+name: reefline_datadog
+version: 0.1.0
+dsl_version: 3
+backend: file
+test_queries:
+  - SELECT COUNT(*) FROM reefline_datadog.metrics
+tables:
+  - name: metrics
+    description: Datadog metric points in long format (synthetic).
+    format: jsonl
+    source:
+      location: file:///Users/khushiyantchauhan/Developer/experiments/wemakedevs-hack/spyglass/coral/data/datadog/
+      glob: "metrics.jsonl"
+    columns:
+      - { name: metric,    type: Utf8 }
+      - { name: service,   type: Utf8 }
+      - { name: value,     type: Float64 }
+      - { name: timestamp, type: Utf8 }

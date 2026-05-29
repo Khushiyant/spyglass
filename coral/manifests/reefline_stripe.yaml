@@ -1,0 +1,22 @@
+name: reefline_stripe
+version: 0.1.0
+dsl_version: 3
+backend: file
+test_queries:
+  - SELECT COUNT(*) FROM reefline_stripe.charges
+tables:
+  - name: charges
+    description: Stripe charge events for Reefline customers (synthetic).
+    format: jsonl
+    source:
+      location: file:///Users/khushiyantchauhan/Developer/experiments/wemakedevs-hack/spyglass/coral/data/stripe/
+      glob: "charges.jsonl"
+    columns:
+      - { name: id,              type: Utf8 }
+      - { name: amount,          type: Int64 }
+      - { name: currency,        type: Utf8 }
+      - { name: status,          type: Utf8 }
+      - { name: customer_id,     type: Utf8 }
+      - { name: created,         type: Utf8 }
+      - { name: failure_code,    type: Utf8 }
+      - { name: metadata_event,  type: Utf8 }
