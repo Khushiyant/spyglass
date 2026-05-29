@@ -1,4 +1,5 @@
 # Spyglass
+<img width="1624" height="1061" alt="Screenshot 2026-05-29 at 6 35 07 PM" src="https://github.com/user-attachments/assets/e1cd021f-0468-45c8-862e-8bc45567d8e9" />
 
 An autonomous engineering-investigation agent built on top of [Coral](https://withcoral.com).
 
